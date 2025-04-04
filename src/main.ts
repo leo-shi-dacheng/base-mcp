@@ -23,7 +23,7 @@ import {
   type WalletClient,
 } from 'viem';
 import { mnemonicToAccount } from 'viem/accounts';
-import { base } from 'viem/chains';
+import { hashkeyTestnet } from 'viem/chains';
 import { chainIdToCdpNetworkId, chainIdToChain } from './chains.js';
 import { baseMcpTools, toolToHandler } from './tools/index.js';
 import { version } from './version.js';
@@ -35,7 +35,7 @@ export async function main() {
   const privateKey =
     process.env.COINBASE_API_SECRET || process.env.COINBASE_API_PRIVATE_KEY; // Previously, was called COINBASE_API_PRIVATE_KEY
   const seedPhrase = process.env.SEED_PHRASE;
-  const chainId = process.env.CHAIN_ID ? Number(process.env.CHAIN_ID) : base.id;
+  const chainId = process.env.CHAIN_ID ? Number(process.env.CHAIN_ID) : hashkeyTestnet.id;
 
   // TODO: stricter checks for required env vars with better error messaging
   if (!apiKeyName || !privateKey || !seedPhrase) {
@@ -58,6 +58,9 @@ export async function main() {
     transport: http(),
   }).extend(publicActions) as WalletClient & PublicActions;
 
+  console.log(apiKeyName, 'apiKeyName');
+  console.log(privateKey, 'privateKey');
+  console.log(chainId, 'chainId');
   const cdpWalletProvider = await CdpWalletProvider.configureWithWallet({
     mnemonicPhrase: seedPhrase,
     apiKeyName,

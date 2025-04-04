@@ -1,16 +1,16 @@
-import { base, baseSepolia } from 'viem/chains';
+import { hashkey, hashkeyTestnet } from 'viem/chains';
 
 export const chainIdToChain = (chainId: string | number) => {
-  if (String(chainId) === String(baseSepolia.id)) {
-    return baseSepolia;
+  if (String(chainId) === String(hashkeyTestnet.id)) {
+    return hashkeyTestnet;
   }
-  if (String(chainId) === String(base.id)) {
-    return base;
+  if (String(chainId) === String(hashkey.id)) {
+    return hashkey;
   }
   return null;
 };
 
 export const chainIdToCdpNetworkId: Record<number, string> = {
-  [baseSepolia.id]: 'base-sepolia',
-  [base.id]: 'base-mainnet',
+  [hashkeyTestnet.id]: 'hashkey-testnet',
+  [hashkey.id]: 'hashkey-mainnet',
 };

@@ -1,17 +1,17 @@
 import type { Chain } from 'viem';
-import { base, baseSepolia } from 'viem/chains';
+import { hashkey, hashkeyTestnet } from 'viem/chains';
 import { chainIdToChain } from '../../chains.js';
 
 export function constructBaseScanUrl(
   chain: Chain,
   transactionHash: `0x${string}`,
 ) {
-  if (chain.id === base.id) {
-    return `https://basescan.org/tx/${transactionHash}`;
+  if (chain.id === hashkey.id) {
+    return `https://hashkey.blockscout.com/tx/${transactionHash}`;
   }
 
-  if (chain.id === baseSepolia.id) {
-    return `https://sepolia.basescan.org/tx/${transactionHash}`;
+  if (chain.id === hashkeyTestnet.id) {
+    return `https://hashkeychain-testnet-explorer.alt.technology/tx/${transactionHash}`;
   }
 }
 
