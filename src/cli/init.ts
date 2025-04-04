@@ -40,6 +40,16 @@ const TOOLS_WITH_REQUIRED_KEYS: ToolWithKeys[] = [
       },
     ],
   },
+  {
+    name: 'Flaunch',
+    keys: [
+      {
+        name: 'PINATA_JWT',
+        label: 'Pinata JWT',
+        required: true,
+      },
+    ],
+  },
 ];
 
 const baseBlue = chalk.hex('#0052FF');

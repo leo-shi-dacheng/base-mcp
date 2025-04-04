@@ -5,6 +5,15 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@across-protocol/app-sdk@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "@across-protocol/app-sdk@npm:0.2.0"
+  peerDependencies:
+    viem: ^2.20.1
+  checksum: 10c0/d6431114330748992ffb7c889f94fa05a1b1c3560fe1716122d777741bef8c9cf8bd4e5f6fa039e85890e6cf495a1b05601245af884f6e63f3136e10c8fedeb7
+  languageName: node
+  linkType: hard
+
 "@adraffy/ens-normalize@npm:1.10.1, @adraffy/ens-normalize@npm:^1.10.1":
   version: 1.10.1
   resolution: "@adraffy/ens-normalize@npm:1.10.1"
@@ -159,23 +168,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@coinbase/agentkit@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@coinbase/agentkit@npm:0.4.0"
+"@coinbase/agentkit@npm:^0.0.0-nightly-20250403210430":
+  version: 0.0.0-nightly-20250403210430
+  resolution: "@coinbase/agentkit@npm:0.0.0-nightly-20250403210430"
   dependencies:
+    "@across-protocol/app-sdk": "npm:^0.2.0"
     "@alloralabs/allora-sdk": "npm:^0.1.0"
     "@coinbase/coinbase-sdk": "npm:^0.20.0"
     "@jup-ag/api": "npm:^6.0.39"
     "@privy-io/server-auth": "npm:^1.18.4"
     "@solana/spl-token": "npm:^0.4.12"
     "@solana/web3.js": "npm:^1.98.0"
+    bs58: "npm:^4.0.1"
+    canonicalize: "npm:^2.1.0"
+    decimal.js: "npm:^10.5.0"
+    ethers: "npm:^6.13.5"
     md5: "npm:^2.3.0"
     opensea-js: "npm:^7.1.18"
     reflect-metadata: "npm:^0.2.2"
     twitter-api-v2: "npm:^1.18.2"
     viem: "npm:^2.22.16"
     zod: "npm:^3.23.8"
-  checksum: 10c0/86f88b0191627d0946c6de9ad30b5cf91434c5a6792cddc5a8e834ba057294b60b72dc3b932758a8940da7c94fc08ee5510ff80ec665643794a064a964f958e2
+  checksum: 10c0/9269be0bd2c0886361154ee2e6a4e33586189b25dfa86b239a44a27fe6f0f2759b3f67b8b3ec64cbc8b44c98f12ebecfae76a5a98fb70afaa349961a5f5dcc4d
   languageName: node
   linkType: hard
 
@@ -2902,7 +2916,7 @@ __metadata:
   resolution: "base-mcp@workspace:."
   dependencies:
     "@clack/prompts": "npm:^0.10.0"
-    "@coinbase/agentkit": "npm:^0.4.0"
+    "@coinbase/agentkit": "npm:^0.0.0-nightly-20250403210430"
     "@coinbase/agentkit-model-context-protocol": "npm:^0.2.0"
     "@coinbase/coinbase-sdk": "npm:^0.21.0"
     "@coinbase/onchainkit": "npm:^0.37.6"
@@ -3210,6 +3224,15 @@ __metadata:
   version: 2.0.0
   resolution: "canonicalize@npm:2.0.0"
   checksum: 10c0/b14fecd0f9e498d22a550656440ed7fd7a9e59eeaba16d72691683a351626f2cd61f62fe17cca4267f39d7a851e027c3defc47b09a9e748dd2cce3ea4eda0a1f
+  languageName: node
+  linkType: hard
+
+"canonicalize@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "canonicalize@npm:2.1.0"
+  bin:
+    canonicalize: bin/canonicalize.js
+  checksum: 10c0/3b1ec612765851e71eeff2868f5ccbf0a06ffd8db8deef36efda89167527f96803b555c4ca8b5f5230f0a13badeeac5541c9244c8996fea97d00cee8dca2bf35
   languageName: node
   linkType: hard
 
@@ -3603,7 +3626,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"decimal.js@npm:^10.4.3":
+"decimal.js@npm:^10.4.3, decimal.js@npm:^10.5.0":
   version: 10.5.0
   resolution: "decimal.js@npm:10.5.0"
   checksum: 10c0/785c35279df32762143914668df35948920b6c1c259b933e0519a69b7003fc0a5ed2a766b1e1dda02574450c566b21738a45f15e274b47c2ac02072c0d1f3ac3
@@ -4364,6 +4387,21 @@ __metadata:
     tslib: "npm:2.7.0"
     ws: "npm:8.17.1"
   checksum: 10c0/64bc7b8907de199392b8a88c15c9a085892919cff7efa2e5326abc7fe5c426001726c51d91e10c74e5fc5e2547188297ce4127f6e52ea42a97ade0b2ae474677
+  languageName: node
+  linkType: hard
+
+"ethers@npm:^6.13.5":
+  version: 6.13.6
+  resolution: "ethers@npm:6.13.6"
+  dependencies:
+    "@adraffy/ens-normalize": "npm:1.10.1"
+    "@noble/curves": "npm:1.2.0"
+    "@noble/hashes": "npm:1.3.2"
+    "@types/node": "npm:22.7.5"
+    aes-js: "npm:4.0.0-beta.5"
+    tslib: "npm:2.7.0"
+    ws: "npm:8.17.1"
+  checksum: 10c0/e757b2995e1298396d120e9cb92a07c4308e93ea28eedb577d4e7a43b0b1cdf4be2460a6722294e42c1da9a9b1dddd9f2c885c9e6120fa845ccdd1b706e0ec04
   languageName: node
   linkType: hard
 

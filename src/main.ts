@@ -1,6 +1,7 @@
 import {
   AgentKit,
   basenameActionProvider,
+  cdpApiActionProvider,
   cdpWalletActionProvider,
   CdpWalletProvider,
   morphoActionProvider,
@@ -26,6 +27,7 @@ import { mnemonicToAccount } from 'viem/accounts';
 import { base } from 'viem/chains';
 import { chainIdToCdpNetworkId, chainIdToChain } from './chains.js';
 import { baseMcpTools, toolToHandler } from './tools/index.js';
+import { getActionProvidersWithRequiredEnvVars } from './utils.js';
 import { version } from './version.js';
 
 export async function main() {
@@ -77,6 +79,11 @@ export async function main() {
         apiKeyName,
         apiKeyPrivateKey: privateKey,
       }),
+      cdpApiActionProvider({
+        apiKeyName,
+        apiKeyPrivateKey: privateKey,
+      }),
+      ...getActionProvidersWithRequiredEnvVars(),
     ],
   });
 

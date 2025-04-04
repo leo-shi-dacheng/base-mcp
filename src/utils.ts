@@ -1,3 +1,4 @@
+import { flaunchActionProvider } from '@coinbase/agentkit';
 import type { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { zodToJsonSchema, type JsonSchema7Type } from 'zod-to-json-schema';
@@ -49,4 +50,16 @@ export function generateTool({
     },
     handler: toolHandler,
   };
+}
+
+/**
+ * Some AgentKit action providers throw if a key isn't set
+ * This function returns a list of action providers that have required env vars
+ */
+export function getActionProvidersWithRequiredEnvVars() {
+  if (process.env.PINATA_JWT) {
+    return [flaunchActionProvider()];
+  }
+
+  return [];
 }

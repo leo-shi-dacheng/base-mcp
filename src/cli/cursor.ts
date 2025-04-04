@@ -14,7 +14,7 @@ export async function configureCursor({
 
   const baseMcpConfig = {
     command: 'npx',
-    args: ['base-mcp'],
+    args: ['-y', 'base-mcp@latest'],
     env: {
       COINBASE_API_KEY_NAME: cdpKeyId,
       COINBASE_API_PRIVATE_KEY: cdpSecret,

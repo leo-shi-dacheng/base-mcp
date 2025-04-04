@@ -150,6 +150,11 @@ ALCHEMY_API_KEY=your_alchemy_api_key
 # OpenRouter API Key (optional for buying OpenRouter credits)
 # You can obtain this from https://openrouter.ai/keys
 OPENROUTER_API_KEY=your_openrouter_api_key
+
+# Chain ID (optional for Base Sepolia testnet)
+# Use 84532 for Base Sepolia testnet
+# You do not have to include this if you want to use Base Mainnet
+CHAIN_ID=your_chain_id
 ```
 
 ## Testing
@@ -185,14 +190,16 @@ You can easily access this file via the Claude Desktop app by navigating to Clau
      "mcpServers": {
        "base-mcp": {
          "command": "npx",
-         "args": ["base-mcp@latest"],
+         "args": ["-y", "base-mcp@latest"],
          "env": {
            "COINBASE_API_KEY_NAME": "your_api_key_name",
            "COINBASE_API_PRIVATE_KEY": "your_private_key",
            "SEED_PHRASE": "your seed phrase here",
            "COINBASE_PROJECT_ID": "your_project_id",
            "ALCHEMY_API_KEY": "your_alchemy_api_key",
-           "OPENROUTER_API_KEY": "your_openrouter_api_key"
+           "PINATA_JWT": "your_pinata_jwt",
+           "OPENROUTER_API_KEY": "your_openrouter_api_key",
+           "CHAIN_ID": "optional_for_base_sepolia_testnet"
          },
          "disabled": false,
          "autoApprove": []
@@ -249,6 +256,18 @@ Parameters:
 Example query to Claude:
 
 > "Deploy a simple ERC20 token contract for me."
+
+### check-address-reputation
+
+Checks the reputation of an address.
+
+Parameters:
+
+- `address`: The Ethereum address to check
+
+Example query to Claude:
+
+> "What's the reputation of 0x1234567890abcdef1234567890abcdef12345678?"
 
 ### get_morpho_vaults
 
