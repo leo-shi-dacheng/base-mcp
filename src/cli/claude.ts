@@ -22,9 +22,8 @@ export async function configureClaude({
   );
 
   const baseMcpConfig = {
-    // TODO: go back to base-mcp once https://github.com/modelcontextprotocol/servers/issues/64 is resolved
     command: 'npx',
-    args: ['base-mcp'],
+    args: ['-y', 'base-mcp@latest'],
     env: {
       COINBASE_API_KEY_NAME: cdpKeyId,
       COINBASE_API_PRIVATE_KEY: cdpSecret,
