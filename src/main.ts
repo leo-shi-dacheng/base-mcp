@@ -60,23 +60,22 @@ export async function main() {
     transport: http(),
   }).extend(publicActions) as WalletClient & PublicActions;
 
-  console.log(apiKeyName, 'apiKeyName');
-  console.log(privateKey, 'privateKey');
-  console.log(chainId, 'chainId');
   const cdpWalletProvider = await CdpWalletProvider.configureWithWallet({
     mnemonicPhrase: seedPhrase,
     apiKeyName,
     apiKeyPrivateKey: privateKey,
     networkId: chainIdToCdpNetworkId[chainId],
   });
-
+ 
   const agentKit = await AgentKit.from({
     cdpApiKeyName: apiKeyName,
     cdpApiKeyPrivateKey: privateKey,
     walletProvider: cdpWalletProvider,
     actionProviders: [
-      basenameActionProvider(),
-      morphoActionProvider(),
+      // TODO: add more action providers
+      // 后续接入自己的 ens 和 kyc 服务
+      // basenameActionProvider(),
+      // morphoActionProvider(),
       walletActionProvider(),
       cdpWalletActionProvider({
         apiKeyName,
@@ -89,7 +88,10 @@ export async function main() {
       ...getActionProvidersWithRequiredEnvVars(),
     ],
   });
-
+  if (!agentKit) {
+    throw new Error('Failed to create agent kit');
+  }
+  console.log(agentKit, 'agentKit');
   const { tools, toolHandler } = await getMcpTools(agentKit);
 
   const server = new Server(

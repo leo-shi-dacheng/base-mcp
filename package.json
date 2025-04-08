@@ -35,7 +35,7 @@
   ],
   "author": "Dan Schlabach, Tina He",
   "license": "MIT",
-  "packageManager": "yarn@4.5.1",
+  "packageManager": "pnpm@10.5.2",
   "dependencies": {
     "@clack/prompts": "^0.10.0",
     "@coinbase/agentkit": "^0.6.0",
@@ -74,5 +74,10 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1",
     "zod-to-json-schema": "^3.24.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "@coinbase/agentkit": "link:../../../.local/share/pnpm/global/5/node_modules/@coinbase/agentkit"
+    }
   }
 }

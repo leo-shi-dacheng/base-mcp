@@ -1,4 +1,4 @@
-import { flaunchActionProvider } from '@coinbase/agentkit';
+// import { flaunchActionProvider } from '@coinbase/agentkit';
 import type { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { zodToJsonSchema, type JsonSchema7Type } from 'zod-to-json-schema';
@@ -58,7 +58,9 @@ export function generateTool({
  */
 export function getActionProvidersWithRequiredEnvVars() {
   if (process.env.PINATA_JWT) {
-    return [flaunchActionProvider()];
+    // flaunchActionProvider 新版本才有 jwt 相关的东西
+    // return [flaunchActionProvider()];
+    return [];
   }
 
   return [];
