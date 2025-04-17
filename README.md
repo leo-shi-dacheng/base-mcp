@@ -2,7 +2,7 @@
 
 ![OpenRouter Integration](public/OpenRouter.gif)
 
-[![npm version](https://img.shields.io/npm/v/base-mcp.svg)](https://www.npmjs.com/package/base-mcp)
+[![npm version](https://img.shields.io/npm/v/hashkey-mcp.svg)](https://www.npmjs.com/package/hashkey-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Model Context Protocol (MCP) server that provides onchain tools for AI applications like Claude Desktop and Cursor, allowing them to interact with the Base Network and Coinbase API.
@@ -87,16 +87,16 @@ For more detailed information on contributing to Base MCP, including adding new 
 
 ```bash
 # Install globally
-npm install -g base-mcp
+npm install -g hashkey-mcp
 
 # Or install locally in your project
-npm install base-mcp
+npm install hashkey-mcp
 ```
 
 Once the package is installed, you can configure clients with the following command:
 
 ```bash
-base-mcp --init
+hashkey-mcp --init
 ```
 
 ### Option 2: Install from Source
@@ -104,8 +104,8 @@ base-mcp --init
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/base/base-mcp.git
-   cd base-mcp
+   git clone https://github.com/base/hashkey-mcp.git
+   cd hashkey-mcp
    ```
 
 2. Install dependencies:
@@ -188,9 +188,9 @@ You can easily access this file via the Claude Desktop app by navigating to Clau
    ```json
    {
      "mcpServers": {
-       "base-mcp": {
+       "hashkey-mcp": {
          "command": "npx",
-         "args": ["-y", "base-mcp@latest"],
+         "args": ["-y", "hashkey-mcp@latest"],
          "env": {
            "COINBASE_API_KEY_NAME": "your_api_key_name",
            "COINBASE_API_PRIVATE_KEY": "your_private_key",
@@ -420,7 +420,7 @@ For detailed guidelines on contributing to Base MCP, including:
 - Suggesting enhancements
 - Development setup
 - Coding standards
-- **Adding new tools, protocols, and data sources** (see also the [Extending Base MCP](#extending-base-mcp-with-3p-protocols-tools-and-data-sources) section above)
+- **Adding new tools, protocols, and data sources** (see also the [Extending Base MCP](#extending-hashkey-mcp-with-3p-protocols-tools-and-data-sources) section above)
 - Testing requirements
 - Documentation standards
 

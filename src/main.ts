@@ -1,12 +1,14 @@
 import {
   AgentKit,
-  basenameActionProvider,
   cdpApiActionProvider,
   cdpWalletActionProvider,
   CdpWalletProvider,
-  morphoActionProvider,
   walletActionProvider,
-} from '@coinbase/agentkit';
+  erc20ActionProvider,
+  erc721ActionProvider,
+  wowActionProvider,
+} from '@hashkey/agentkit';
+// import { getMcpTools } from '@coinbase/agentkit-model-context-protocol';
 import { getMcpTools } from '@coinbase/agentkit-model-context-protocol';
 import { Coinbase } from '@coinbase/coinbase-sdk';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -24,8 +26,8 @@ import {
   type WalletClient,
 } from 'viem';
 import { english, generateMnemonic, mnemonicToAccount } from 'viem/accounts';
-import { base } from 'viem/chains';
 import { Event, postMetric } from './analytics.js';
+import { hashkeyTestnet } from 'viem/chains';
 import { chainIdToCdpNetworkId, chainIdToChain } from './chains.js';
 import { baseMcpTools, toolToHandler } from './tools/index.js';
 import {
@@ -42,7 +44,7 @@ export async function main() {
     process.env.COINBASE_API_SECRET || process.env.COINBASE_API_PRIVATE_KEY; // Previously, was called COINBASE_API_PRIVATE_KEY
   const seedPhrase = process.env.SEED_PHRASE;
   const fallbackPhrase = generateMnemonic(english, 256); // Fallback in case user wants read-only operations
-  const chainId = process.env.CHAIN_ID ? Number(process.env.CHAIN_ID) : base.id;
+  const chainId = process.env.CHAIN_ID ? Number(process.env.CHAIN_ID) : hashkeyTestnet.id;
 
   if (!apiKeyName || !privateKey) {
     console.error(
@@ -58,7 +60,7 @@ export async function main() {
   const chain = chainIdToChain(chainId);
   if (!chain) {
     throw new Error(
-      `Unsupported chainId: ${chainId}. Only Base and Base Sepolia are supported.`,
+      `Unsupported chainId: ${chainId}. Only Hashkey and Hashkey Sepolia are supported.`,
     );
   }
 
@@ -74,14 +76,16 @@ export async function main() {
     apiKeyPrivateKey: privateKey,
     networkId: chainIdToCdpNetworkId[chainId],
   });
-
+ 
   const agentKit = await AgentKit.from({
     cdpApiKeyName: apiKeyName,
     cdpApiKeyPrivateKey: privateKey,
     walletProvider: cdpWalletProvider,
     actionProviders: [
-      basenameActionProvider(),
-      morphoActionProvider(),
+      // TODO: add more action providers
+      // 后续接入自己的 ens 和 kyc 服务
+      // basenameActionProvider(),
+      // morphoActionProvider(),
       walletActionProvider(),
       cdpWalletActionProvider({
         apiKeyName,
@@ -91,15 +95,25 @@ export async function main() {
         apiKeyName,
         apiKeyPrivateKey: privateKey,
       }),
+      erc20ActionProvider(),
+      erc721ActionProvider(),
+      wowActionProvider(),
+      // defillamaActionProvider(),
+      // alchemyTokenPricesActionProvider(),
+      // TODO: add more action providers
+      // acrossActionProvider(),
       ...getActionProvidersWithRequiredEnvVars(),
     ],
   });
-
-  const { tools, toolHandler } = await getMcpTools(agentKit);
-
+  if (!agentKit) {
+    throw new Error('Failed to create agent kit');
+  }
+  console.log(agentKit, 'agentKit');
+  // const { tools, toolHandler } = await getMcpTools(agentKit);
+  const { tools, toolHandler } = await getMcpTools(agentKit as any);
   const server = new Server(
     {
-      name: 'Base MCP Server',
+      name: 'Hashkey MCP Server',
       version,
     },
     {
@@ -112,7 +126,7 @@ export async function main() {
   Coinbase.configure({
     apiKeyName,
     privateKey,
-    source: 'Base MCP',
+    source: 'Hashkey MCP',
     sourceVersion: version,
   });
 
@@ -128,6 +142,7 @@ export async function main() {
       postMetric(Event.ToolUsed, { toolName: request.params.name }, sessionId);
 
       // Check if the tool is Base MCP tool
+      // Check if the tool is Hashkey MCP tool
       const isBaseMcpTool = baseMcpTools.some(
         (tool) => tool.definition.name === request.params.name,
       );
@@ -172,5 +187,5 @@ export async function main() {
   console.error('Connecting server to transport...');
   await server.connect(transport);
 
-  console.error('Base MCP Server running on stdio');
+  console.error('Hashkey MCP Server running on stdio');
 }

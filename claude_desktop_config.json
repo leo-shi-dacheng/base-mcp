@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "hashkey-mcp": {
+      "command": "wsl",
+      "args": [
+        "-d",
+        "Ubuntu",
+        "node",
+        "/home/leo/work/ai/hashkey-mcp/build/index.js"
+      ],
+      "env": {
+        "COINBASE_API_KEY_NAME": "98496c57-7932-468e-bf0e-fc46ca882395",
+        "COINBASE_API_PRIVATE_KEY": "VBOLBZSDuWW6PN91TRfir3BIB9cYpo7Zr2oCGd9rW8S+eAylHqXXYcjKFAzylN3fsrK+EhKXLRICZeh+EBcGpQ==",
+        "SEED_PHRASE": "someone vote uncover blanket wild hundred vault coil setup rack lamp violin",
+        "COINBASE_PROJECT_ID": "5486300e-2a82-4652-abe5-62ddf9f05c73",
+        "OPENROUTER_API_KEY": "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",
+        "CHAIN_ID": "133"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

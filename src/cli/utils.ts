@@ -53,6 +53,6 @@ type RootConfig = {
 };
 
 export const writeRootConfig = (config: RootConfig) => {
-  const configPath = path.join(os.homedir(), '.base-mcp');
+  const configPath = path.join(os.homedir(), '.hashkey-mcp');
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
 };
