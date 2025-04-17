@@ -1,12 +1,14 @@
 import {
   AgentKit,
-  basenameActionProvider,
   cdpApiActionProvider,
   cdpWalletActionProvider,
   CdpWalletProvider,
-  morphoActionProvider,
   walletActionProvider,
-} from '@coinbase/agentkit';
+  erc20ActionProvider,
+  erc721ActionProvider,
+  wowActionProvider,
+} from '@hashkey/agentkit';
+// import { getMcpTools } from '@coinbase/agentkit-model-context-protocol';
 import { getMcpTools } from '@coinbase/agentkit-model-context-protocol';
 import { Coinbase } from '@coinbase/coinbase-sdk';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -50,7 +52,7 @@ export async function main() {
   const chain = chainIdToChain(chainId);
   if (!chain) {
     throw new Error(
-      `Unsupported chainId: ${chainId}. Only Base and Base Sepolia are supported.`,
+      `Unsupported chainId: ${chainId}. Only Hashkey and Hashkey Sepolia are supported.`,
     );
   }
 
@@ -85,6 +87,13 @@ export async function main() {
         apiKeyName,
         apiKeyPrivateKey: privateKey,
       }),
+      erc20ActionProvider(),
+      erc721ActionProvider(),
+      wowActionProvider(),
+      // defillamaActionProvider(),
+      // alchemyTokenPricesActionProvider(),
+      // TODO: add more action providers
+      // acrossActionProvider(),
       ...getActionProvidersWithRequiredEnvVars(),
     ],
   });
@@ -92,11 +101,11 @@ export async function main() {
     throw new Error('Failed to create agent kit');
   }
   console.log(agentKit, 'agentKit');
-  const { tools, toolHandler } = await getMcpTools(agentKit);
-
+  // const { tools, toolHandler } = await getMcpTools(agentKit);
+  const { tools, toolHandler } = await getMcpTools(agentKit as any);
   const server = new Server(
     {
-      name: 'Base MCP Server',
+      name: 'Hashkey MCP Server',
       version,
     },
     {
@@ -109,7 +118,7 @@ export async function main() {
   Coinbase.configure({
     apiKeyName,
     privateKey,
-    source: 'Base MCP',
+    source: 'Hashkey MCP',
     sourceVersion: version,
   });
 
@@ -122,7 +131,7 @@ export async function main() {
 
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
     try {
-      // Check if the tool is Base MCP tool
+      // Check if the tool is Hashkey MCP tool
       const isBaseMcpTool = baseMcpTools.some(
         (tool) => tool.definition.name === request.params.name,
       );
@@ -155,5 +164,5 @@ export async function main() {
   console.error('Connecting server to transport...');
   await server.connect(transport);
 
-  console.error('Base MCP Server running on stdio');
+  console.error('Hashkey MCP Server running on stdio');
 }

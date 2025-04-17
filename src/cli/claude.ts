@@ -23,7 +23,7 @@ export async function configureClaude({
 
   const baseMcpConfig = {
     command: 'npx',
-    args: ['-y', 'base-mcp@latest'],
+    args: ['-y', 'hashkey-mcp@latest'],
     env: {
       COINBASE_API_KEY_NAME: cdpKeyId,
       COINBASE_API_PRIVATE_KEY: cdpSecret,

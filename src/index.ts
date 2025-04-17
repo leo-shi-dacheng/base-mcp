@@ -25,13 +25,13 @@ try {
   values = args.values;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 } catch (err) {
-  console.error('Unrecognized argument. For help, run `base-mcp --help`.');
+  console.error('Unrecognized argument. For help, run `hashkey-mcp --help`.');
   process.exit(0);
 }
 
 if (values.help) {
   console.log(`
-Usage: base-mcp [options]
+Usage: hashkey-mcp [options]
 
 Options:
   -i, --init     Initialize configuration

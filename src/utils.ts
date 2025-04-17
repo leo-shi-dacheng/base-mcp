@@ -1,4 +1,4 @@
-// import { flaunchActionProvider } from '@coinbase/agentkit';
+// import { flaunchActionProvider } from '@hashkey/agentkit';
 import type { Tool } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 import { zodToJsonSchema, type JsonSchema7Type } from 'zod-to-json-schema';

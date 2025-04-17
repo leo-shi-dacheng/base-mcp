@@ -1,5 +1,5 @@
 {
-  "name": "base-mcp",
+  "name": "hashkey-mcp",
   "version": "1.0.10",
   "description": "A Model Context Protocol (MCP) server that provides onchain tools for Claude AI, allowing it to interact with the Base blockchain and Coinbase API",
   "bin": "./build/index.js",
@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/base/base-mcp"
+    "url": "https://github.com/base/hashkey-mcp"
   },
   "keywords": [
     "mcp",
@@ -38,7 +38,7 @@
   "packageManager": "pnpm@10.5.2",
   "dependencies": {
     "@clack/prompts": "^0.10.0",
-    "@coinbase/agentkit": "^0.6.0",
+    "@hashkey/agentkit": "^0.6.0",
     "@coinbase/agentkit-model-context-protocol": "^0.2.0",
     "@coinbase/coinbase-sdk": "^0.21.0",
     "@coinbase/onchainkit": "^0.37.6",
@@ -77,7 +77,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@coinbase/agentkit": "link:../../../.local/share/pnpm/global/5/node_modules/@coinbase/agentkit"
+      "@hashkey/agentkit": "link:../../../.local/share/pnpm/global/5/node_modules/@hashkey/agentkit",
+      "@hashkey/agentkit-model-context-protocol": "link:../../../.local/share/pnpm/global/5/node_modules/@hashkey/agentkit-model-context-protocol"
     }
   }
 }

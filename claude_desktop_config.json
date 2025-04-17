@@ -1,14 +1,12 @@
 {
   "mcpServers": {
-    "base-mcp": {
+    "hashkey-mcp": {
       "command": "wsl",
       "args": [
         "-d",
-        "Ubuntu-20.04",
-        "-e",
-        "bash",
-        "-c",
-        "source /home/leo/.nvm/nvm.sh && node /home/leo/work/ai/base-mcp/build/index.js"
+        "Ubuntu",
+        "node",
+        "/home/leo/work/ai/hashkey-mcp/build/index.js"
       ],
       "env": {
         "COINBASE_API_KEY_NAME": "98496c57-7932-468e-bf0e-fc46ca882395",
