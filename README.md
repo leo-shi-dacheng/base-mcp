@@ -199,7 +199,7 @@ You can easily access this file via the Claude Desktop app by navigating to Clau
            "ALCHEMY_API_KEY": "your_alchemy_api_key",
            "PINATA_JWT": "your_pinata_jwt",
            "OPENROUTER_API_KEY": "your_openrouter_api_key",
-           "CHAIN_ID": "optional_for_base_sepolia_testnet"
+           "CHAIN_ID": "177"
          },
          "disabled": false,
          "autoApprove": []
