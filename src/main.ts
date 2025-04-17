@@ -2,12 +2,13 @@ import {
   AgentKit,
   cdpApiActionProvider,
   cdpWalletActionProvider,
+  ViemWalletProvider,
   CdpWalletProvider,
   walletActionProvider,
   erc20ActionProvider,
   erc721ActionProvider,
   wowActionProvider,
-} from '@hashkey/agentkit';
+} from '@hashkeychain/agentkit';
 // import { getMcpTools } from '@coinbase/agentkit-model-context-protocol';
 import { getMcpTools } from '@coinbase/agentkit-model-context-protocol';
 import { Coinbase } from '@coinbase/coinbase-sdk';
@@ -69,28 +70,29 @@ export async function main() {
     chain,
     transport: http(),
   }).extend(publicActions) as WalletClient & PublicActions;
-
-  const cdpWalletProvider = await CdpWalletProvider.configureWithWallet({
-    mnemonicPhrase: seedPhrase ?? fallbackPhrase,
-    apiKeyName,
-    apiKeyPrivateKey: privateKey,
-    networkId: chainIdToCdpNetworkId[chainId],
-  });
+  
+  // const cdpWalletProvider = await CdpWalletProvider.configureWithWallet({
+  //   mnemonicPhrase: seedPhrase ?? fallbackPhrase,
+  //   apiKeyName,
+  //   apiKeyPrivateKey: privateKey,
+  //   networkId: chainIdToCdpNetworkId[chainId],
+  // });
+  const viemWalletProvider = new ViemWalletProvider(viemClient);
  
   const agentKit = await AgentKit.from({
     cdpApiKeyName: apiKeyName,
     cdpApiKeyPrivateKey: privateKey,
-    walletProvider: cdpWalletProvider,
+    walletProvider: viemWalletProvider,
     actionProviders: [
       // TODO: add more action providers
       // 后续接入自己的 ens 和 kyc 服务
       // basenameActionProvider(),
       // morphoActionProvider(),
       walletActionProvider(),
-      cdpWalletActionProvider({
-        apiKeyName,
-        apiKeyPrivateKey: privateKey,
-      }),
+      // cdpWalletActionProvider({
+      //   apiKeyName,
+      //   apiKeyPrivateKey: privateKey,
+      // }),
       cdpApiActionProvider({
         apiKeyName,
         apiKeyPrivateKey: privateKey,
@@ -105,10 +107,11 @@ export async function main() {
       ...getActionProvidersWithRequiredEnvVars(),
     ],
   });
+
   if (!agentKit) {
     throw new Error('Failed to create agent kit');
   }
-  console.log(agentKit, 'agentKit');
+
   // const { tools, toolHandler } = await getMcpTools(agentKit);
   const { tools, toolHandler } = await getMcpTools(agentKit as any);
   const server = new Server(
